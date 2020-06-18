@@ -5,6 +5,9 @@
 public class Parent {
   String usingSuper = "I'm using super here.";
 
+  /**This method is used to describe inheritance.
+   * 
+   */
   public void example() {
 
     System.out.println("I'm the example method.");
@@ -19,6 +22,8 @@ public class Parent {
         + " Only public methods can be inhered");
   }
 
+  /**This method is used to show an example of overriding.
+   */
   public void overriding() {
     System.out.println("This is an example of overriding.");
     System.out.println("Uses the same method in one of the subclasses and recreates it.");

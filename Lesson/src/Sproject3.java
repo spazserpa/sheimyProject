@@ -19,35 +19,61 @@
  * this is empty and is use to return type for functions that do not return a value
  */
 // # Milistone2 req4 using a Random class
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+//import java.util.Random; I had to comment out because spotBugs did not found it useful.
+//It work perfectly and belong to case 2 in case you want try it. Also there is some commented lines
+//there that have be uncomment in case that you want to try it.
+import java.util.Scanner;
 
 public class Sproject3 {
 
+  /**
+   * Driving method.
+   * 
+   * @param args this is a time parameter.
+   */
   public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in); // Description: To get user input
-    boolean userAnswer; // Milestone1 Requirement#5 boolean variable
+    final StringBuilder intro = new StringBuilder("To my program. \n");
+    // Milestone1 Requirement#8 string object by using the keyword new.
+    // String greeting = new String("Welcome ");
+    String greeting = "Welcome ";
 
-    final StringBuilder intro = new StringBuilder("To my program. \n"); // Requirement#11 final
-                                                                       // variable.
-    String greeting = new String("Welcome ");// Milestone1 Requirement#8 string object by using the
-                                             // keyword new.
 
-    System.out.print(greeting);// Milestone1 Requirement#4 Greetings.
+    System.out.print(greeting); // Milestone1 Requirement#4 Greetings.
 
-    System.out.print(intro);// Description: Print out the final variable.
+    System.out.print(intro); // Description: Print out the final variable.
 
-    System.out.println("Here I demostrate all the skills I have learn" + // Description: Concatenate
-                                                                         // multiple
-    // strings!
-        " through the semester about programing using java? ");
+    System.out.println("Here I demostrate all the skills I have learn"
+        // Description: Concatenate multiple strings!
+        + " through the semester about programing using java? ");
+    boolean restart = true;
+    while (restart) {
 
-    question();// Milestone2 req2 Method call and argument.
 
-    String answer = scan.nextLine().trim().toLowerCase();
-    if (answer.equals("yes")) {// Mileston2 req6 if/else constructor
-      // Milestone2 req9 comparing string object using .equals() method.
-      userAnswer = true;
+      question(); // Milestone2 req2 Method call and argument.
+      Scanner scan = new Scanner(System.in, "UTF-8"); // Description: To get user input
       int age; // Milestone1 Requirement#6 integer variable
+      try {
+
+        String answer = scan.nextLine();
+        answer = answer.trim();
+        if (answer.equals("yes")) { // Mileston2 req6 if/else constructor
+
+        } else if (answer.equals("no")) {
+
+          break;
+
+        } else {
+          continue;
+        }
+      } catch (InputMismatchException number) {
+        System.out.println("You only can type 'yes' or 'no'.");
+
+      } catch (Exception e) {
+        System.out.println("You have an error" + e);
+      }
 
       System.out.println("What is your name? ");
       String name = scan.nextLine();
@@ -55,9 +81,12 @@ public class Sproject3 {
           + " Select what type of content do you want to see in this switch statement. ");
 
       String userInput = "yes";
+      int k = 1;
+
       do {
 
-        int select;
+
+        int select = 0;
         System.out.println(" 1 Demostrate: Arithmetic operators like +,-,*,/, throutgh a simple "
             + "calculator. \n "
             + "2 Demostrate: Random class with a for loop using the break statement.\n "
@@ -81,57 +110,68 @@ public class Sproject3 {
             + "20 Demostrate: Enhanced for loop.\n " + "21 Demostrate: Multidimentional arrays.\n "
             + "22 Demostrate: Finding a value index on a multydimentional array.\n ");
 
-        select = scan.nextInt();
+        do {
+          try {
 
+            select = scan.nextInt();
+            k = 2;
+          } catch (Exception e) {
+            System.out.println("not allowed");
+            System.out.println("Enter a number: ");
+            scan.nextLine();
+          }
+        } while (k == 1);
 
-        switch (select) {// Milestone2 req8 switch statement
+        switch (select) { // Milestone2 req8 switch statement
           case 1:
             System.out.println("I can tell you how old are you if you were born in Mars./n");
             System.out.println("How old are you : ");
             age = scan.nextInt();
-
-            double resultant = returnMethod(age);// Milestone1 Requirement#7 double variable.
-                                                 // it stores the calculation result.
+            // Milestone1 Requirement#7 double variable. it stores the calculation result.
+            double resultant = returnMethod(age);
 
             System.out.println(name + " you are " + resultant + " years old on Mars! ");
             System.out.println("In this line, your ages is giving in a double data type ");
-            System.out.println("So you are " + (int) resultant + " years old");// Milestone1
+            System.out.println("So you are " + (int) resultant + " years old"); // Milestone1
             // Requirement#12 Using casting.
             System.out.println("This line is using concatenation.\n"
                 + "concatenation is used to convert an object or a variable of one type to"
                 + " another. " + "\nIn this case we are narrowing(convert large to small type)"
-                + "\nWe also can use Widening(convert small to larger type)\n ");// Milestone1
+                + "\nWe also can use Widening(convert small to larger type)\n "); // Milestone1
             // Requirement#13 Format strings using escape sequences.
 
             break;
           case 2:
             System.out.println("This for loop uses a random class with a break statement.\n");
-            Random rand = new Random();
-            int randNumber;
-            for (int counter = 1; counter <= 10; counter++) {// Milestone2 req15 for loop.
-              randNumber = rand.nextInt();
+            // Random rand = new Random();
 
-              if (counter == 28945) {/*
-                                      * Milestone2 req9 the == operator compares the objects
-                                      * references(same memory location)
-                                      */
-                break; // Milestone2 req17 using break in the loop and describing
+            for (int counter = 1; counter <= 10; counter++) { // Milestone2 req15 for loop.
+              // int randNumber;
+              // randNumber = rand.nextInt();
 
-              }
-              System.out.println(randNumber);
+              // if (counter == 289) {
+              /*
+               * Milestone2 req9 the == operator compares the objects references(same memory
+               * location)
+               */
+              // break; // Milestone2 req17 using break in the loop and describing
+
+              // }
+              // System.out.println(randNumber);
             }
             System.out.println("In case that this loop generates a random number equals to 28945 "
                 + "the program will go to the break statement and jump out of the loop.");
             break;
           case 3:
+            double ceilNum = 2.4;
             System.out.println("In this part of the program we use the Math class."); // Milestone2
             // req5 math class
             System.out.println("The Math class provides more advance mathematical calculations"
                 + " than the basic Java math operands provide.\n"
                 + "This is some of the most used!");
             System.out.println("Abs math class find absolute value of -78: " + Math.abs(-78));
-            System.out.println("Ceil math class rounds up, EX 2.4 is: " + Math.ceil(2.4));
-            System.out.println("Floor rounds down, EX 2.4 is: " + Math.floor(2.4));
+            System.out.println("Ceil math class rounds up, EX 2.4 is: " + Math.ceil(ceilNum));
+            System.out.println("Floor rounds down, EX 2.4 is: " + Math.floor(ceilNum));
             System.out
                 .println("Max find the maximum value of two numbers, Ex 2,4 is: " + Math.max(2, 4));
             System.out
@@ -150,16 +190,18 @@ public class Sproject3 {
                 "Ternary constructors can be use to check conditions like if a number is even or"
                     + " odd.");
             do {
-              try {//Milestone3 req14
+              try { // Milestone3 req14
 
                 System.out.println("Please enter a number to check: ");
                 int number;
                 number = scan.nextInt();
-                String response = number % 2 == 0 ? " is even" : " is odd"; // Milestone2 req7
-                                                                            // ternary
-                                                                            // constructs
+                // Milestone2 req7 ternary constructs
+                String response = number % 2 == 0 ? " is even" : " is odd";
                 System.out.print(number + response + "\n");
                 x = 2;
+              } catch (InputMismatchException value) {
+                System.out.println("Not letters allowd.");
+
               } catch (Exception e) {
                 System.out.println("Not allowed");
 
@@ -192,9 +234,9 @@ public class Sproject3 {
                     + "Then if the condition is true it will preform the following task"
                     + " until the condition become false.");
             int integer = 10;
-            do {// Milestone2 req16 using do while loop
+            do { // Milestone2 req16 using do while loop
               System.out.println(integer);
-              integer--;// Milestone2 req10 using the decrement operator --.
+              integer--; // Milestone2 req10 using the decrement operator --.
             } while (integer > 0);
             System.out.println("This is an example of a count backward using "
                 + "a do while loop and the decrement operator --.");
@@ -212,7 +254,7 @@ public class Sproject3 {
                 int a = scan.nextInt();
                 // Milestone2 req15 for loop
                 for (int i = a; i < 10; i++) {
-                  if (i == 4) {// Milestone2 req18 using a loop with a continue statement.
+                  if (i == 4) { // Milestone2 req18 using a loop with a continue statement.
                     continue;
                   }
                   System.out.println(i);
@@ -223,6 +265,8 @@ public class Sproject3 {
                     + "That is because when i=4 the condition is meet\n"
                     + "but the continues statement help the task to continue running until i<10.");
                 m = 2;
+              } catch (InputMismatchException e) {
+                System.out.println("You can only enter a number between 1 and 9.");
               } catch (Exception e) {
                 System.out.println("Not allowed");
               }
@@ -236,15 +280,21 @@ public class Sproject3 {
                 + ">(grater than)\n" + ">=(greater than or equal to)\n" + "<(less than)\n"
                 + "<=(less than or equal to)");
             // Milestone2 req11 relational operators
-            int e = 2, sum = 0;
-            while (e <= 5) {// Milestone2 req14 while loop
+            int e = 2;
+            int sum = 0;
+            while (e <= 5) { // Milestone2 req14 while loop
               sum += e;
               e++;
 
             }
             System.out.println("sumation: " + sum);
             // Milestone2 req10
-            int t = 2, b = 10, c = 0, d = 2, h = 6, f = 9;
+            int t = 2;
+            int b = 10;
+            int c = 0;
+            int d = 2;
+            int h = 6;
+            int f = 9;
             System.out.println(t + b + " This statement uses the + arithmetic operator.");
             System.out.println(t - h + " This statement uses the - arithmetic operator.");
             System.out.println(b / d + " This statement uses the / arithmetic operator.");
@@ -259,10 +309,12 @@ public class Sproject3 {
             System.out.println("This part of the program uses the && and || operators.\n"
                 + "The conditional operators && (AND) evaluates if the two conditions are true."
                 + "The conditional operator || (OR) evaluates if at least one condition is true.");
-            if ((firstVal == 2) && (secVal == 4))
+            if ((firstVal == 2) && (secVal == 4)) {
               System.out.println("The first value is equal to 2 and the second is equal to 4.");
-            if ((firstVal == 2) || (secVal == 7))
+            }
+            if ((firstVal == 2) || (secVal == 7)) {
               System.out.println("One of the other is equal to 2.");
+            }
             break;
 
           case 10:
@@ -313,20 +365,20 @@ public class Sproject3 {
             System.out.println("Overload contructor are usefull when creating objects with "
                 + "differents arguments.");
             // objects
-            MethodExample MethodExampleObject = new MethodExample();// no parameters
-            MethodExample MethodExampleObject2 = new MethodExample(5);// 1 parameter
-            MethodExample MethodExampleObject3 = new MethodExample(5, 13);// 2parameter
-            MethodExample MethodExampleObject4 = new MethodExample(5, 13, 43);// 3parameter
+            MethodExample methodExampleObject = new MethodExample(); // no parameters
+            MethodExample methodExampleObject2 = new MethodExample(5); // 1 parameter
+            MethodExample methodExampleObject3 = new MethodExample(5, 13); // 2parameter
+            MethodExample methodExampleObject4 = new MethodExample(5, 13, 43); // 3 parameter
             // this is going to return MethodExobject with no arguments
             // This is constructor overloading with different argument list
-            System.out.printf("%s\n",
-                MethodExampleObject.toMilitary() + " This object has not parameter");
-            System.out.printf("%s\n",
-                MethodExampleObject2.toMilitary() + " This object takes 1 parameter");
-            System.out.printf("%s\n",
-                MethodExampleObject3.toMilitary() + " This object takes 2 parameter");
-            System.out.printf("%s\n",
-                MethodExampleObject4.toMilitary() + " This object takes 3 parameter");
+            System.out.printf("%s%n",
+                methodExampleObject.toMilitary() + " This object has not parameter");
+            System.out.printf("%s%n",
+                methodExampleObject2.toMilitary() + " This object takes 1 parameter");
+            System.out.printf("%s%n",
+                methodExampleObject3.toMilitary() + " This object takes 2 parameter");
+            System.out.printf("%s%n",
+                methodExampleObject4.toMilitary() + " This object takes 3 parameter");
 
             System.out.println("Method overloading allows a class to have more than one method"
                 + "having the same name, if their arguments lists are different.");
@@ -343,15 +395,15 @@ public class Sproject3 {
           case 13:
             System.out.println(
                 "Inheritance allows classes to inherit fields and methods of another class.");
-            //Milestone3req3 Inheritance1 object
+            // Milestone3req3 Inheritance1 object
             Child inheritanceObject = new Child();
             inheritanceObject.example();
             // overriding
-            Parent Inheritance1Object = new Parent();
-            Inheritance1Object.overriding();
+            Parent inheritance1Object = new Parent();
+            inheritance1Object.overriding();
 
             break;
-          case 14://Milestone3 req3 
+          case 14:// Milestone3 req3
             System.out.println("The Super keyword is used to access methods of the parent class.");
             System.out.println("While this keyword is used to access methods of the current class");
             System.out.println("we can see the use of 'this' in case: 12");
@@ -361,7 +413,7 @@ public class Sproject3 {
           case 15:
             System.out.println("Polymorphism is the ability of an object to take on many forms.");
             // Milestone3 req6 using polymorphism
-            Parent sh[] = new Parent[2];
+            Parent[] sh = new Parent[2];
             sh[0] = new Child();
             sh[1] = new MethodExample();
 
@@ -374,19 +426,19 @@ public class Sproject3 {
           case 16:
             System.out
                 .println("Array is a group of variables that are referred to by a common name.\n"
-                    + "An array variable can also be declared like other variables with[] after the data"
-                    + "type\n"
+                    + "An array variable can also be declared like other variables with[] after "
+                    + "the data type.\n"
                     + "The variable in the array are ordered and each index beginning from 0.");
             System.out.println("We can make a table like this using arrays.");
             System.out.println("Index\tValue");
-            int numbers[] = {3, 89, 58, 4, 35};//Milestone3 req7 array initialization
-            for (int counter = 0; counter < numbers.length; counter++) {// array used
+            int[] numbers = {3, 89, 58, 4, 35}; // Milestone3 req7 array initialization
+            for (int counter = 0; counter < numbers.length; counter++) { // array used
               System.out.println(counter + "\t" + numbers[counter]);
 
             }
 
             break;
-          case 17://Milestone3 req8
+          case 17:// Milestone3 req8
             System.out.println(
                 "this piece of codes demostrates how to find the minumun value in an array.");
 
@@ -394,22 +446,22 @@ public class Sproject3 {
             Arrays.sort(num);
             System.out.println(num[0]);
 
-            break;//Milestone3 req9
+            break; // Milestone3 req9
           case 18:
             System.out.println("This is how we sum the values in an array using accumulator.");
-            int j[] = {21, 45, 6, 3, 47, 6};
+            int[] j = {21, 45, 6, 3, 47, 6};
             sum = 0;
             for (int counter = 0; counter < j.length; counter++) {
               sum += j[counter];
             }
             System.out.println("The sum of these numbers are: " + sum);
             break;
-          case 19://Milestone3 req10
+          case 19:// Milestone3 req10
             System.out.println("This is how we find an index position of a value in an array");
             int[] myArray = {9, 5, 6, 7, 3, 2, 5};
             System.out.println("Index position of of number 3 is: " + findIndex(myArray, 3));
             break;
-          case 20://Milestone3 req11
+          case 20:// Milestone3 req11
             System.out.println("This is how we use an enhanced for loop with an array list.");
             System.out.println("The ArrayList calss can be found in the java.util package."
                 + "The difference between a built-in array and ArrayList is that you can change the"
@@ -420,39 +472,42 @@ public class Sproject3 {
             names.add("Orje");
             names.add("Elia");
 
-            for (String nm : names)
+            for (String nm : names) {
               System.out.println(nm);
+            }
             break;
-          case 21://Milestone3 req12,13
+          case 21:// Milestone3 req12,13
             System.out.println("This is how we use multydimentional arrays.");
-            int multyArray[][] = {{9, 59, 3, 2}, {12, 54, 34, 76}};
-            int multyArray1[][] = {{45, 6, 8, 988}, {65}, {5, 45, 31}};
+            int[][] multyArray = {{9, 59, 3, 2}, {12, 54, 34, 76}};
             System.out.println("First array");
             display(multyArray);
-
+            int[][] multyArray1 = {{45, 6, 8, 988}, {65}, {5, 45, 31}};
             System.out.println("Second array");
             display(multyArray1);
             break;
           case 22:
-            System.out.println("This program find the maximum value in a 2d array and"
-                + " find its index.");
+            System.out.println(
+                "This program find the maximum value in a 2d array and" + " find its index.");
 
             int[][] arr = {{4, 44, 5, 7, 63, 1}, {7, 88, 31, 95, 9, 6}, {88, 99, 6, 5, 77, 4}};
             int max = arr[0][0];
-            int max_row = 0;
-            int max_column = 0;
+            int maxRow = 0;
+            int maxColumn = 0;
             for (int i = 0; i < arr.length; i++) {
               for (int y = 0; y < arr.length; y++) {
                 if (arr[i][y] > max) {
                   max = arr[i][y];
-                  max_row = i;
-                  max_column = y;
+                  maxRow = i;
+                  maxColumn = y;
                 }
               }
-              System.out.println(
-                  "The max is: " + max + " at index [" + max_row + "][" + max_column + "]");
+              System.out
+                  .println("The max is: " + max + " at index [" + maxRow + "][" + maxColumn + "]");
             }
             break;
+          default:
+            System.out.println("You enter a letter");
+
 
         }
 
@@ -474,25 +529,21 @@ public class Sproject3 {
        * /*Milestone1 Requirement#11 definition of final variable --> A Final variable can not be
        * re-assign any other value once the value is assign.
        */
-    } else if (answer.equals("no")) {
-      userAnswer = false;
-      System.out.println("Ok then!");
-    } else {
-
-      System.out.println("Sorry, you can only enter yes or not");
-
+      scan.close();
     }
+
   }
 
-  static void question() {// Milestone1 Requirement#8 String object using string literal
+
+  static void question() { // Milestone1 Requirement#8 String object using string literal
     String question = "If you want to know more about it type yes otherwise type no. ";
     System.out.println(question);
   }
 
   //// #16 Milestone2 req3 static double returnMethod(integer age) is the header
   //// and age is a parameter
-  static double returnMethod(int age) {// Mileston2 req1 create a method with argument and return
-                                       // value
+  // Mileston2 req1 create a method with argument and return value
+  static double returnMethod(int age) {
     double daysInMars = 686.98; // this are the equivalent Earths days for a Mars year
     return age * 365.25 / daysInMars;
   }
@@ -501,6 +552,11 @@ public class Sproject3 {
     System.out.println(name);
   }
 
+  /**
+   * This is a getter method.
+   * 
+   * @param num to find length. @return.
+   */
   public static int getMinValue(int[] num) {
     int minValue = num[0];
     for (int i = 1; i < num.length; i++) {
@@ -512,7 +568,13 @@ public class Sproject3 {
 
   }
 
-  public static int findIndex(int array[], int t) {
+  /**
+   * This method is used to find the index of a value in an array.
+   * 
+   * @param array is set to null.
+   * @return a negative value.
+   */
+  public static int findIndex(int[] array, int t) {
     if (array == null) {
       return -1;
 
@@ -533,9 +595,11 @@ public class Sproject3 {
   }
 
   /**
-   * @param x
+   * Method takes a parameter.
+   * 
+   * @param x is used with an array.
    */
-  public static void display(int x[][]) {
+  public static void display(int[][] x) {
     for (int row = 0; row < x.length; row++) {
       for (int column = 0; column < x[row].length; column++) {
         System.out.print(x[row][column] + "\t");
@@ -545,7 +609,6 @@ public class Sproject3 {
     }
 
   }
-
 
 }
 

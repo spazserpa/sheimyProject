@@ -7,23 +7,28 @@ public class MethodExample extends Parent {
   private int second;
 
   // milestone3 req2 overload methods differ in number of parameters
-  public MethodExample() {// constructor 0 arguments
+  public MethodExample() { // constructor 0 arguments
     this(0, 0, 0);
   }
 
-  public MethodExample(int h) {// constructor 1 arguments
+  public MethodExample(int h) { // constructor 1 arguments
     this(h, 0, 0);
   }
 
-  public MethodExample(int h, int m) {// constructor 2 arguments
+  public MethodExample(int h, int m) { // constructor 2 arguments
     this(h, m, 0);
   }
 
-  public MethodExample(int h, int m, int s) {// constructor 3 arguments
+  public MethodExample(int h, int m, int s) { // constructor 3 arguments
     setTime(h, m, s);
 
   }
 
+  /**.
+   * @param h Takes an integer for hours.
+   * @param m Takes an integer for minutes.
+   * @param s Takes an integer for seconds.
+   */
   public void setTime(int h, int m, int s) {
     setHour(h);
     setMinute(m);

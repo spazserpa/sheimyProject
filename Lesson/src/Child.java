@@ -2,6 +2,9 @@
 // This class uses the keyword extends, super and help to provide the ex of
 // inheritance and polymorphism in my project
 public class Child extends Parent {
+  /**.
+   *This method uses the word super.
+   */
   public void overriding() {
     System.out.println(super.usingSuper);
     System.out.println("This is the action of override a method."
